@@ -1,0 +1,90 @@
+// Заголовки, общие БЄМ блоки и проче...
+
+//Фон-картинка
+.main-bg {
+   position: fixed;
+   top: -10%;
+   left: 0;
+   width: 100%;
+   height: 120%;
+   background: url('../img/BG.jpg') center / cover no-repeat;
+}
+
+//Шапка блока
+.block-header {
+   @extend %cuf;
+   display: grid;
+   gap: 8px;
+   justify-items: center;
+   
+   &__sub-title {
+      color: $mainWhite;
+      @include adaptiveValue("font-size", 23, 23);
+      line-height: 130%; /* 29.9px */
+      letter-spacing: 0.92px;
+      display: grid;
+      gap: 8px;
+      justify-items: center;
+      &::after{
+         @extend %ic;
+         content: '\e904';
+         color: $mainYellow;
+         font-size: em(9,23);
+      }
+   }
+
+   // .block-header__title
+
+   &__title {
+      color: $mainYellow;
+      @include adaptiveValue("font-size", 64, 64);
+      font-weight: 600;
+      line-height: 130%; 
+      letter-spacing: 1.92px;
+   }
+
+   		// .block-header_big
+
+		&_big {
+         .block-header__title {
+         @include adaptiveValue("font-size", 90, 90);
+         }
+		}
+
+		// .block-header_left
+
+		&_left {
+         justify-items: left;
+         .block-header__sub-title {
+         justify-items: left;
+         }
+		}
+  
+
+}
+
+//Скролл страницы
+ .scroll {
+   @extend %cuf; 
+   color: $mainYellow;
+   @include adaptiveValue("font-size", 16, 16);
+   font-weight: 700;
+   line-height: 175%; /* 28px */
+   letter-spacing: 0.04rem;
+   text-transform: uppercase;  
+   display: grid;
+   justify-items: center;
+   gap: 24px;
+   &::before{
+      content:'';
+      width: 1px;
+      height: 60px;
+      background: rgb(220,202,135);
+      background: linear-gradient(180deg, rgba(220,202,135,1) 0%, rgba(220,202,135,1) 50%, rgba(220,202,135,0.24) 100%);
+   }
+ }  
+
+//Текст блока
+[class*='__text']{
+   line-height: 175%;
+   }
