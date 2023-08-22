@@ -9,7 +9,7 @@
 // Пример: { Navigation, Autoplay }
 
 import Swiper from 'swiper'
- import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper/modules';
 
 /*
 Основниые модули слайдера:
@@ -43,7 +43,7 @@ function bildSliders() {
 }
 
 // Инициализация слайдеров
-function initSlidersSliders() {
+function initSliders() {
    // Добавление классов слайдера
 	// при необходимости отключить
 	bildSliders();
@@ -52,17 +52,16 @@ function initSlidersSliders() {
 	// Проверяем, есть ли слайдер на стрaнице
 	if (document.querySelector('.body-main-slider')) { // Указываем скласс нужного слайдера
 		// Создаем слайдер
-		new Swiper('.swiper', { // Указываем скласс нужного слайдера
+		new Swiper('.body-main-slider', { // Указываем скласс нужного слайдера
 			// Подключаем модули слайдера
 			// для конкретного случая
-         modules: [Pagination, EffectFade],
-			effect: 'fade',
+         modules: [Pagination, EffectFade, Autoplay],
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
 			spaceBetween: 0,
 			//autoHeight: true,
-			speed: 800,
+			speed: 500,
 
 			//touchRatio: 0,
 			//simulateTouch: false,
@@ -70,19 +69,19 @@ function initSlidersSliders() {
 			//preloadImages: false,
 			//lazy: true,
 
-			/*
+			
 			// Эффекты
 			effect: 'fade',
 			autoplay: {
-				delay: 3000,
+				delay: 2700,
 				disableOnInteraction: false,
 			},
-			*/
+			
 
 			// Пагинация
 			
 			pagination: {
-				el: '.body-main-slider__control',
+				el: '.body-main-slider__controll',
 				clickable: true,
 			},
 			
@@ -125,7 +124,14 @@ function initSlidersSliders() {
 			*/
 			// События
 			on: {
-
+            init: function () {
+               const controll = document.querySelectorAll('.body-main-slider__controll .swiper-pagination-bullet');
+               controll.forEach((el,index) => {
+                  let num = index < 10 ? `0` : '';
+                  el.innerHTML = `${num}${index + 1}`;
+               }               
+               );
+            },
 			}
 		});
 	}
